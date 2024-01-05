@@ -4,15 +4,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using proeduedge.Models;
+using proeduedge.DAL;
 
 #nullable disable
 
 namespace proeduedge.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20231215203541_databasetest")]
-    partial class databasetest
+    [Migration("20240105201153_user-updated")]
+    partial class userupdated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,15 +39,19 @@ namespace proeduedge.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
