@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using proeduedge.DAL.Entities;
 using proeduedge.Models;
+using proeduedge.Models.DTO;
 using proeduedge.Repository;
 using proeduedge.Services;
 using System.Collections.Generic;
@@ -84,21 +86,26 @@ namespace proeduedge.Controllers
                 var result = await _fileService.UploadAsync("avatar", file);
                 return Ok(result);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 // Log the exception details
                 return StatusCode(500, "An error occurred while uploading the file.");
             }
         }
         [HttpPost("login")]
-        public async Task<ActionResult<Users>> Login([FromBody] LoginModel login)
+        public async Task<IActionResult> Login([FromBody] LoginModel login)
         {
             var user = await _userRepository.UserLogin(login);
             if (user == null)
             {
-                return NotFound("User not found. Please check your email and password.");
+                return BadRequest(new
+                {
+                    status = 400,
+                    message = "User not found. Please check your email and password.",
+                    error = true
+                });
             }
             return Ok(user);
-        }   
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using proeduedge.Models;
+﻿using proeduedge.DAL.Entities;
+using proeduedge.Models;
 
 namespace proeduedge.Repository
 {

@@ -14,12 +14,12 @@ namespace proeduedge.Controllers
             _fileService = fileService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> ListAllBlobs()
+        [HttpGet, Route("/{containerName}")]
+        public async Task<IActionResult> ListAllBlobs(string containerName)
         {
             try
             {
-                var result = await _fileService.ListAsync("avatar");
+                var result = await _fileService.ListAsync(containerName);
                 return Ok(result);
             }
             catch (System.Exception ex)
@@ -29,18 +29,34 @@ namespace proeduedge.Controllers
             }
         }
 
-        [HttpPost, Route("upload")]
-        public async Task<IActionResult> Upload(IFormFile file)
+        [HttpPost, Route("upload/{containerName}")]
+        public async Task<IActionResult> Upload(IFormFile file, string containerName)
         {
             try
             {
-                var result = await _fileService.UploadAsync("avatar", file);
+                var result = await _fileService.UploadAsync(containerName, file);
                 return Ok(result);
             }
             catch (System.Exception ex)
             {
                 // Log the exception details
                 return StatusCode(500, "An error occurred while uploading the file.");
+            }
+        }
+
+
+        [HttpPost, Route("uploadMultiple/{containerName}")]
+        public async Task<IActionResult> UploadMultiple(IEnumerable<IFormFile> files, string containerName)
+        {
+            try
+            {
+                var result = await _fileService.UploadMultipleAsync(containerName, files);
+                return Ok(result);
+            }
+            catch (System.Exception ex)
+            {
+                // Log the exception details
+                return StatusCode(500, "An error occurred while uploading the files.");
             }
         }
 

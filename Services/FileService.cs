@@ -51,12 +51,42 @@ namespace proeduedge.Services
             response.Blob = new Blob
             {
                 Uri = client.Uri.AbsoluteUri,
-                Name = blob.FileName
+                Name = blob.FileName,
+                ContentType = blob.ContentType
             };
 
             return response;
         }
 
+        public async Task<IEnumerable<BlobResponse>> UploadMultipleAsync(string containerName, IEnumerable<IFormFile> blobs)
+        {
+            var container = _blobServiceClient.GetBlobContainerClient(containerName);
+            var responses = new List<BlobResponse>();
+
+            foreach (var blob in blobs)
+            {
+                BlobResponse response = new BlobResponse();
+                BlobClient client = container.GetBlobClient(blob.FileName);
+
+                await using (Stream data = blob.OpenReadStream())
+                {
+                    await client.UploadAsync(data, true);
+                }
+
+                response.Status = $"File {blob.FileName} uploaded successfully ;)";
+                response.Error = false;
+                response.Blob = new Blob
+                {
+                    Uri = client.Uri.AbsoluteUri,
+                    Name = blob.FileName,
+                    ContentType = blob.ContentType
+                };
+
+                responses.Add(response);
+            }
+
+            return responses;
+        }
         public async Task<Blob> DownloadAsync(string containerName, string blobFilename)
         {
             var _filesContainer = _blobServiceClient.GetBlobContainerClient(containerName);

@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using proeduedge.DAL;
+using proeduedge.DAL.Entities;
 using proeduedge.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace proeduedge.Repository
 {
