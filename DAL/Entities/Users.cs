@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace proeduedge.Models
+namespace proeduedge.DAL.Entities
 {
     public class Users
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

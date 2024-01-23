@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace proeduedge.Models
+namespace proeduedge.DAL.Entities
 {
     public class Category
     {
@@ -8,7 +8,5 @@ namespace proeduedge.Models
 
         [Required]
         public string Name { get; set; }
-
-        public List<Course> Courses { get; set; }
     }
 }

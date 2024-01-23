@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace proeduedge.Models
+namespace proeduedge.DAL.Entities
 {
     public class CourseFiles
     {

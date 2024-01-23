@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using proeduedge.DAL.Entities;
 
 namespace proeduedge.Models
 {
