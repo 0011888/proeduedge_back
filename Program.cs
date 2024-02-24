@@ -54,6 +54,7 @@ builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<FileService>(_ => new FileService(accountName, key));
 builder.Services.AddDbContext<AppDBContext>(options =>
 {
