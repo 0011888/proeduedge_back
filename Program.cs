@@ -68,7 +68,11 @@ builder.Services.AddSwaggerGen(c =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+<<<<<<< HEAD
 if (true)
+=======
+if (app.Environment.IsDevelopment())
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 {
     app.UseSwagger();
     app.UseSwaggerUI();

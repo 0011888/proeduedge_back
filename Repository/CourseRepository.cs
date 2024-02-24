@@ -1,10 +1,13 @@
 ﻿using proeduedge.DAL;
 using proeduedge.DAL.Entities;
+<<<<<<< HEAD
 using proeduedge.Models.DTO;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using static System.Collections.Specialized.BitVector32;
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 
 namespace proeduedge.Repository
 {
@@ -22,6 +25,7 @@ namespace proeduedge.Repository
             await SaveAsync();
             return course;
         }
+<<<<<<< HEAD
         public async Task AddCourseContent(CourseContentClientModel courseContent)
         {
             var courseId = courseContent.CourseId;
@@ -51,6 +55,8 @@ namespace proeduedge.Repository
 
             await _context.SaveChangesAsync();
         }.
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 
         public async Task<string> DeleteCourse(int id)
         {
@@ -67,6 +73,7 @@ namespace proeduedge.Repository
             }
         }
 
+<<<<<<< HEAD
         public async Task<CourseDetailDto> GetCourseWithContent(int id)
         {
             // First, get the course with its related contents from the database
@@ -102,6 +109,8 @@ namespace proeduedge.Repository
 
 
 
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
         public async Task<Course> GetCourse(int id)
         {
             var course = await _context.Course.FindAsync(id);
@@ -137,11 +146,14 @@ namespace proeduedge.Repository
             await SaveAsync();
             return courseToUpdate;
         }
+<<<<<<< HEAD
 
         public async Task<IEnumerable<Category>> GetCategories()
         {
             return await Task.FromResult(_context.Category.ToList());
         }   
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

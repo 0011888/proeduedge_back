@@ -82,11 +82,16 @@ namespace proeduedge.Migrations
             modelBuilder.Entity("proeduedge.DAL.Entities.CourseContent", b =>
                 {
                     b.Property<int>("Id")
+<<<<<<< HEAD
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+=======
+                        .HasColumnType("int");
+
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -102,6 +107,11 @@ namespace proeduedge.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD
+=======
+                    b.HasIndex("OwnerId");
+
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
                     b.ToTable("CourseContent");
                 });
 
@@ -140,6 +150,25 @@ namespace proeduedge.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("proeduedge.DAL.Entities.CourseContent", b =>
+                {
+                    b.HasOne("proeduedge.DAL.Entities.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("proeduedge.DAL.Entities.Users", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Owner");
                 });
 #pragma warning restore 612, 618
         }

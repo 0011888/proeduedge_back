@@ -98,9 +98,15 @@ namespace proeduedge.Controllers
             var user = await _userRepository.UserLogin(login);
             if (user == null)
             {
+<<<<<<< HEAD
                 return BadRequest(new
                 {
                     status = 400,
+=======
+                return NotFound(new
+                {
+                    status = 404,
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
                     message = "User not found. Please check your email and password.",
                     error = true
                 });

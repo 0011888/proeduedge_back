@@ -10,8 +10,12 @@ namespace proeduedge.Repository
         Task<Course> AddCourse(Course course);
         Task<Course> UpdateCourse(Course course);
         Task<string> DeleteCourse(int id);
+<<<<<<< HEAD
         Task AddCourseContent(CourseContentClientModel courseContent);
         Task<CourseDetailDto> GetCourseWithContent(int id);
         Task<IEnumerable<Category>> GetCategories();
+=======
+        Task<CourseContentClientModel> AddCourseContent(CourseContentClientModel courseContent);
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
     }
 }

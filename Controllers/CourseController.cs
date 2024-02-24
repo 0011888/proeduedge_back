@@ -1,8 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using proeduedge.DAL.Entities;
+<<<<<<< HEAD
 using proeduedge.Models.DTO;
 using proeduedge.Repository;
 using static System.Collections.Specialized.BitVector32;
+=======
+using proeduedge.Repository;
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,6 +41,7 @@ namespace proeduedge.Controllers
             return Ok(course);
         }
 
+<<<<<<< HEAD
         [HttpGet("get-categories")]
         public async Task<IActionResult> GetCategories()
         {
@@ -44,12 +49,15 @@ namespace proeduedge.Controllers
             return Ok(categories);
         }
 
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
         [HttpPost("create-course")]
         public async Task<IActionResult> CreateCourse([FromBody] Course course)
         {
             var newCourse = await _courseRepository.AddCourse(course);
             return CreatedAtAction(nameof(GetCourseById), new { id = newCourse.Id }, newCourse);
         }
+<<<<<<< HEAD
         [HttpPost("add-content")]
         public async Task<IActionResult> AddCourseContent([FromBody] CourseContentClientModel content)
         {
@@ -75,6 +83,8 @@ namespace proeduedge.Controllers
 
             return Ok(content);
         }
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 
         [HttpPut("edit-course")]
         public async Task<IActionResult> UpdateCourse([FromBody] Course course)
@@ -100,6 +110,9 @@ namespace proeduedge.Controllers
             await _courseRepository.DeleteCourse(id);
             return NoContent();
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
     }
 }

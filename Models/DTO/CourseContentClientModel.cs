@@ -6,13 +6,25 @@
         public int CourseId { get; set; }
         public int OwnerId { get; set; }
         public DateTime ModifiedAt { get; set; }
+<<<<<<< HEAD
         public CourseSection CourseContent { get; set; }
 
+=======
+        public List<CourseSection> CourseContent { get; set; }
+
+        public CourseContentClientModel()
+        {
+            CourseContent = new List<CourseSection>();
+        }
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
     }
 
     public class CourseSection
     {
+<<<<<<< HEAD
         public int CourseId { get; set; }
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
         public string SectionName { get; set; }
         public string Title { get; set; }
         public string Status { get; set; }
@@ -30,6 +42,7 @@
         public string FileType { get; set; }
         public string Url { get; set; }
     }
+<<<<<<< HEAD
 
     public class CourseDetailDto
     {
@@ -54,4 +67,6 @@
         public DateTime ModifiedDate { get; set; }
     }
 
+=======
+>>>>>>> 990db1e4cdf707b8b51d502627517e4e94d9fab0
 }
