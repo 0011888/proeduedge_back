@@ -50,7 +50,7 @@ namespace proeduedge.Repository
             }
 
             await _context.SaveChangesAsync();
-        }.
+        }
 
         public async Task<string> DeleteCourse(int id)
         {
