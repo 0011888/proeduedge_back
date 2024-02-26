@@ -16,5 +16,7 @@ namespace proeduedge.DAL
         public DbSet<CourseContent> CourseContent { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Payment> Payment { get; set; }
+        public DbSet<Enrollments> Enrollments { get; set;}
+        public DbSet<StudentsProgress> StudentProgress { get; set; }
     }
 }
