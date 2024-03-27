@@ -28,6 +28,7 @@ D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Microsoft.IdentityModel.Prot
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Microsoft.OpenApi.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Newtonsoft.Json.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -74,4 +75,3 @@ D:\WIUT\lev-6\BISP\proeduedge_back\obj\Debug\net6.0\refint\proeduedge.dll
 D:\WIUT\lev-6\BISP\proeduedge_back\obj\Debug\net6.0\proeduedge.pdb
 D:\WIUT\lev-6\BISP\proeduedge_back\obj\Debug\net6.0\proeduedge.genruntimeconfig.cache
 D:\WIUT\lev-6\BISP\proeduedge_back\obj\Debug\net6.0\ref\proeduedge.dll
-D:\WIUT\lev-6\BISP\proeduedge_back\bin\Debug\net6.0\Newtonsoft.Json.dll

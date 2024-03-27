@@ -18,6 +18,9 @@ namespace proeduedge.Repository
             var course = await _context.CourseContent
                 .Where(c => c.CourseId == enrollments.CourseId)
                 .FirstOrDefaultAsync();
+            var c = await _context.Course
+                .Where(c => c.Id == enrollments.CourseId)
+                .FirstOrDefaultAsync();
             if (course != null)
             {
                 var content = course.Content;
@@ -29,6 +32,14 @@ namespace proeduedge.Repository
                     ModifiedDate = DateTime.UtcNow
                 });
                 _context.Enrollments.Add(enrollments);
+                _context.Payment.Add(new Payment
+                {
+                    UserId = enrollments.UserId,
+                    CourseId = enrollments.CourseId,
+                    Amount = c.Price,
+                    PaymentType = "PayPal"
+                });
+                _context.SaveChanges();
                 await _context.SaveChangesAsync();
                 return enrollments;
             }

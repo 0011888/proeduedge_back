@@ -131,6 +131,26 @@ namespace proeduedge.Migrations
                     b.ToTable("Enrollments");
                 });
 
+            modelBuilder.Entity("proeduedge.DAL.Entities.Meetings", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RoomId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Meetings");
+                });
+
             modelBuilder.Entity("proeduedge.DAL.Entities.Payment", b =>
                 {
                     b.Property<int>("Id")

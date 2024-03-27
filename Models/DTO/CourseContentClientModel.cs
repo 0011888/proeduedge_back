@@ -12,6 +12,7 @@
 
     public class CourseSection
     {
+        public int Id { get; set; }
         public int CourseId { get; set; }
         public string SectionName { get; set; }
         public string Title { get; set; }

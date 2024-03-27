@@ -1,10 +1,8 @@
 ﻿using proeduedge.DAL;
 using proeduedge.DAL.Entities;
 using proeduedge.Models.DTO;
-using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
-using static System.Collections.Specialized.BitVector32;
 
 namespace proeduedge.Repository
 {
@@ -100,14 +98,36 @@ namespace proeduedge.Repository
             return courseDetailDto;
         }
 
-
-
-        public async Task<Course> GetCourse(int id)
+        public async Task<CourseClient> GetCourse(int id)
         {
-            var course = await _context.Course.FindAsync(id);
-            if(course != null)
+            var courseWithInstructor = await _context.Course
+                .Join(_context.Users,
+                course => course.InstructorId, // Key selector from the first sequence
+                instructor => instructor.Id, // Key selector from the second sequence
+                (course, instructor) => new CourseClient // Result selector
+                {
+                    Id = course.Id,
+                    Title = course.Title,
+                    Description = course.Description,
+                    Banner = course.Banner,
+                    Price = course.Price,
+                    InstructorId = course.InstructorId,
+                    Instructor = new Users
+                    {
+                        Id = instructor.Id,
+                        FirstName = instructor.FirstName,
+                        LastName = instructor.LastName,
+                        AvatarUrl = instructor.AvatarUrl,
+                        Email = instructor.Email,
+                        Role = instructor.Role
+                    },
+                    CategoryId = course.CategoryId,
+                    CreatedAt = course.CreatedAt,
+                    IsVerified = course.IsVerified
+                }).FirstOrDefaultAsync(c => c.Id == id);
+            if (courseWithInstructor != null)
             {
-                return course;
+                return courseWithInstructor;
             }
             else
             {
@@ -115,9 +135,37 @@ namespace proeduedge.Repository
             }
         }
 
-        public async Task<IEnumerable<Course>> GetCourses()
+        public async Task<IEnumerable<CourseClient>> GetCourses()
         {
-            return await Task.FromResult(_context.Course.ToList());
+            var coursesWithInstructors = await _context.Course
+                .Join(_context.Users, // The second sequence to join
+                      course => course.InstructorId, // Key selector from the first sequence
+                      instructor => instructor.Id, // Key selector from the second sequence
+                      (course, instructor) => new CourseClient // Result selector
+                      {
+                          Id = course.Id,
+                          Title = course.Title,
+                          Description = course.Description,
+                          Banner = course.Banner,
+                          Price = course.Price,
+                          InstructorId = course.InstructorId,
+                          Instructor = new Users
+                          {
+                              Id = instructor.Id,
+                              FirstName = instructor.FirstName,
+                              LastName = instructor.LastName,
+                              AvatarUrl = instructor.AvatarUrl,
+                              Email = instructor.Email,
+                              // Exclude Password for security reasons
+                              Role = instructor.Role
+                          },
+                          CategoryId = course.CategoryId,
+                          CreatedAt = course.CreatedAt,
+                          IsVerified = course.IsVerified
+                      })
+                .ToListAsync();
+
+            return coursesWithInstructors;
         }
 
         public async Task<Course> UpdateCourse(Course course)
@@ -141,10 +189,48 @@ namespace proeduedge.Repository
         public async Task<IEnumerable<Category>> GetCategories()
         {
             return await Task.FromResult(_context.Category.ToList());
-        }   
+        }
+        public async Task<IEnumerable<CourseStat>> GetInstructorCourses(int id)
+        {
+            // Initialize a Random class instance
+            var random = new Random();
+
+            var courses = await _context.Course
+                .Where(c => c.InstructorId == id)
+                .Select(c => new
+                {
+                    Course = c,
+                    TotalEarning = _context.Payment
+                        .Where(p => p.CourseId == c.Id)
+                        .Sum(p => p.Amount),
+                    TotalStudents = _context.Enrollments
+                        .Count(e => e.CourseId == c.Id && e.Status == "enrolled")
+                })
+                .ToListAsync();
+
+            var courseStats = courses.Select(c => new CourseStat
+            {
+                Id = c.Course.Id,
+                Title = c.Course.Title,
+                Description = c.Course.Description,
+                Banner = c.Course.Banner,
+                Price = c.Course.Price,
+                InstructorId = c.Course.InstructorId,
+                CategoryId = c.Course.CategoryId,
+                CreatedAt = c.Course.CreatedAt,
+                IsVerified = c.Course.IsVerified,
+                Rating = random.Next(1, 6), // Generate a random number between 1 and 5
+                TotalEarning = c.TotalEarning,
+                TotalStudents = c.TotalStudents
+            }).ToList();
+
+            return courseStats;
+        }
+
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();
         }
+
     }
 }

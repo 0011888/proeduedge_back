@@ -101,5 +101,11 @@ namespace proeduedge.Controllers
             return NoContent();
         }
 
+        [HttpGet("instructor-courses/{id}")]
+        public async Task<IActionResult> GetInstructorCourses(int id)
+        {
+            var courses = await _courseRepository.GetInstructorCourses(id);
+            return Ok(courses);
+        }
     }
 }

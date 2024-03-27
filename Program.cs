@@ -53,9 +53,11 @@ builder.Services.AddAuthentication(x =>
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
 builder.Services.AddScoped<IEnrollmentsRepository, EnrollmentRepository>();
+builder.Services.AddScoped<IMeeting, MeetingRepository>();
 builder.Services.AddScoped<FileService>(_ => new FileService(accountName, key));
 builder.Services.AddDbContext<AppDBContext>(options =>
 {

@@ -5,12 +5,14 @@ namespace proeduedge.Repository
 {
     public interface ICourseRepository
     {
-        Task<IEnumerable<Course>> GetCourses();
-        Task<Course> GetCourse(int id);
-        Task<Course> AddCourse(Course course);
+        Task<IEnumerable<CourseClient>> GetCourses();
+        Task<CourseClient> GetCourse(int id);
+        Task<Course> AddCourse(Course course); 
+        Task<CourseSection> AddSection(CourseSection section);
         Task<Course> UpdateCourse(Course course);
         Task<string> DeleteCourse(int id);
         Task AddCourseContent(CourseContentClientModel courseContent);
+        Task<IEnumerable<CourseStat>> GetInstructorCourses(int id);
         Task<CourseDetailDto> GetCourseWithContent(int id);
         Task<IEnumerable<Category>> GetCategories();
     }
